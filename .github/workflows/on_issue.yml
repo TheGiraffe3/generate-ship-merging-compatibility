@@ -47,7 +47,10 @@ jobs:
           repository: ${{ steps.repository.outputs.contents }}
           path: ${{ steps.repository_name.outputs.contents }}
       - name: List
-        run: ls
+        run: |
+          ls
+          pwd
+          ls ${{ steps.repository_name.outputs.contents }}
       - name: Remove unneeded files
         run: |
           mv ${{ steps.repository_name.outputs.contents }}/data ${{ steps.repository_name.outputs.contents }}/..
@@ -55,6 +58,7 @@ jobs:
           rm -r ${{ steps.repository_name.outputs.contents }}
           mkdir ${{ steps.repository_name.outputs.contents }}
           mv data ${{ steps.repository_name.outputs.contents }}
+          ls ${{ steps.repository_name.outputs.contents }}
       - name: Generate plugin
         run: |
           REPOSITORY="${{ steps.repository_name.outputs.contents }}" python3 .github/workflows/generate.py
