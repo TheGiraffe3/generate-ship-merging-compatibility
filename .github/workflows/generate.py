@@ -209,7 +209,7 @@ def write_ships(tiers, obj, ship_exclude, nodes_exclude):
 	return ship_names
 
 
-def write_mission(ship_names):
+def write_mission(ship_names, data_folder):
 	
 	# mission start text
 	missiontxt = '' + \
@@ -377,7 +377,7 @@ def run():
 	ship_names = write_ships(tiers, obj, ship_exclude, node_exclude)
 	print('write ships done')
 	ship_names.reverse()
-	write_mission(ship_names)
+	write_mission(ship_names, data_folder)
 	print('mission done')
 
 
