@@ -58,6 +58,7 @@ jobs:
           rm -r ${{ steps.repository_name.outputs.contents }}
           mkdir ${{ steps.repository_name.outputs.contents }}
           mv data ${{ steps.repository_name.outputs.contents }}
+          pwd
           ls ${{ steps.repository_name.outputs.contents }}
       - name: Generate plugin
         run: |
