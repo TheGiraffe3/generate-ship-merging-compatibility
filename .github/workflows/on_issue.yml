@@ -34,20 +34,20 @@ jobs:
         with:
           path: 'repository'
         id: repository
-      - name: Create downloaded directory
-        run: mkdir downloaded
-      - name: Download requested repository
-        uses: actions/checkout@v6
-        with:
-          repository: ${{ steps.repository.outputs.contents }}
-          path: downloaded
-      - name: List
-        run: ls
       - name: Get requested repository name
         uses: andstor/file-reader-action@v1
         with:
           path: 'repository_name'
         id: repository_name
+      - name: Create downloaded directory
+        run: mkdir ${{ steps.repository_name.outputs.contents }}
+      - name: Download requested repository
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ steps.repository.outputs.contents }}
+          path: ${{ steps.repository_name.outputs.contents }}
+      - name: List
+        run: ls
       - name: Generate plugin
         run: |
           REPOSITORY="${{ steps.repository_name.outputs.contents }}" python3 .github/workflows/generate.py
