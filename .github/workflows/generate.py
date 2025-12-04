@@ -213,7 +213,7 @@ def write_mission(ship_names):
 	
 	# mission start text
 	missiontxt = '' + \
-		'mission "upgrade ships"\n' +\
+		'mission "upgrade ships ' + data_folder + '"\n' +\
 		'	job\n' +\
 		'	repeat\n' +\
 		'	name "(Upgrade Ships)"\n' +\
