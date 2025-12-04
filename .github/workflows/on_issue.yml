@@ -58,8 +58,13 @@ jobs:
       - name: Generate plugin
         run: |
           REPOSITORY="${{ steps.repository_name.outputs.contents }}" python3 .github/workflows/generate.py
-      - name: List
-        run: ls
+      - name: move into subfolder and list
+        run: |
+          ls
+          mkdir ${{ steps.repository_name.outputs.contents }}-ship.merging-compat
+          mv ship_upgrades_mission.txt ${{ steps.repository_name.outputs.contents }}-ship.merging-compat
+          mv ship_upgrades_ships.txt ${{ steps.repository_name.outputs.contents }}-ship.merging-compat
+          ls
       - name: Zip plugin
         run: |
           PLUGIN="${{ steps.repository_name.outputs.contents }}"
