@@ -1,0 +1,22 @@
+name: PluginGenerationRequest
+description: Submit a new Plugin Generation Request
+labels:
+  - autoclose
+title: Plugin Generation Request
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome to the Plugin Generation form.
+
+        Change the field to the owner/repository you want to turn into a plugin (e.g. MidnightPlugins/Lost-in-Midnight, TheGiraffe3/rumskib).
+
+        The repository must exist on GitHub, or the script will not work.
+  - type: input
+    id: checkout-repository
+    attributes:
+      label: "Repository"
+      description: "Enter the owner/repository name."
+      placeholder: "e.g. TheGiraffe3/rumskib"
+    validations:
+      required: true

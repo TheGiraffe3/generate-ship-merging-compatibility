@@ -1,0 +1,79 @@
+
+name: Create Plugin
+
+on: 
+  issues: 
+    types: 
+      - opened
+      - reopened
+
+jobs:
+  createplugin:
+    name: Create Plugin
+    runs-on: ubuntu-latest
+    concurrency:
+      group: push-branch-${{ github.ref }}
+      cancel-in-progress: false
+    permissions: write-all
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+      - name: Install libraries
+        run: |
+          python3 -m pip install Pillow
+      - name: Create plugin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PLUGIN_REPOSITORY="${{ github.event.issue.body }}" python3 .github/workflows/get-repository.py
+      - name: List
+        run: ls
+      - name: Get requested repository
+        uses: andstor/file-reader-action@v1
+        with:
+          path: 'repository'
+        id: repository
+      - name: Create downloaded directory
+        run: mkdir downloaded
+      - name: Download requested repository
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ steps.repository.outputs.contents }}
+          path: downloaded
+      - name: List
+        run: ls
+      - name: Get requested repository name
+        uses: andstor/file-reader-action@v1
+        with:
+          path: 'repository_name'
+        id: repository_name
+      - name: Generate plugin
+        run: |
+          REPOSITORY="${{ steps.repository_name.outputs.contents }}" python3 .github/workflows/generate.py
+      - name: Zip plugin
+        run: |
+          PLUGIN="${{ steps.repository_name.outputs.contents }}"
+          echo "Zipping file: '$PLUGIN'"
+          zip "$PLUGIN-compatibility.zip" "ship_upgrades_mission.txt"
+      - name: Upload plugins to release
+        uses: ncipollo/release-action@v1.11.1
+        with:
+          tag: latest
+          allowUpdates: true
+          replacesArtifacts: true
+          updateOnlyUnreleased: false
+          artifacts: "*.zip"
+      - if: contains(github.event.issue.labels.*.name, 'autoclose')
+        name: Add Comment
+        run: gh issue comment "$NUMBER" --body "$BODY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          BODY: >
+            The plugin was generated, so this issue is being automatically closed.
+            You can download it on the [release page](https://github.com/TheGiraffe3/generate-ship-merging-compatibility/releases/tag/latest).
+      - if: contains(github.event.issue.labels.*.name, 'autoclose')
+        name: Close Issue
+        uses: peter-evans/close-issue@v3

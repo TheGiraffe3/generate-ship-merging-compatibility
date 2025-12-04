@@ -1,0 +1,1 @@
+Open an issue to generate a compatibility plugin between ship.merging and a plugin of your choice.
