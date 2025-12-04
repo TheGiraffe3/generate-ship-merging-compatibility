@@ -62,7 +62,7 @@ jobs:
         run: |
           ls
           PLUGIN_NAME=${{ steps.repository_name.outputs.contents }}-ship.merging-compat
-          mkdir $PLUGIN_NAME/data
+          mkdir -p $PLUGIN_NAME/data
           mv plugin.txt $PLUGIN_NAME
           mv ship_upgrades_mission.txt $PLUGIN_NAME/data
           mv ship_upgrades_ships.txt $PLUGIN_NAME/data
