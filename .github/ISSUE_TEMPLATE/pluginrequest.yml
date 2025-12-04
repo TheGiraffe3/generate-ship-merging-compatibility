@@ -1,8 +1,8 @@
-name: PluginGenerationRequest
-description: Submit a new Plugin Generation Request
+name: CompatibilityRequest
+description: Submit a new Compatibility Request
 labels:
   - autoclose
-title: Plugin Generation Request
+title: Compatibility Request
 body:
   - type: markdown
     attributes:
