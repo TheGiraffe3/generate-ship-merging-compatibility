@@ -8,9 +8,9 @@ def run():
 	print(repo)
 	with open("repository", 'a') as fh:
 		print(f'{repo}', file=fh)
-    reponamesplit = repo.split('/')
-    reponame = reponamesplit[1]
-    print(reponame)
+	reponamesplit = repo.split('/')
+	reponame = reponamesplit[1]
+	print(reponame)
 	with open("repository_name", 'a') as fh:
 		print(f'{reponame}', file=fh)
 
