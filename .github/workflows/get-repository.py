@@ -1,3 +1,5 @@
+import os
+
 def run():
 	repository = os.environ['PLUGIN_REPOSITORY']
 	reposplitted = repository.split('\n')
