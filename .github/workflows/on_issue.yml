@@ -58,7 +58,7 @@ jobs:
       - name: Generate plugin
         run: |
           REPOSITORY="${{ steps.repository_name.outputs.contents }}" python3 .github/workflows/generate.py
-      - name: move into subfolder and list
+      - name: Move files into subfolder and list contents
         run: |
           ls
           mkdir ${{ steps.repository_name.outputs.contents }}-ship.merging-compat
@@ -69,7 +69,7 @@ jobs:
         run: |
           PLUGIN="${{ steps.repository_name.outputs.contents }}"
           echo "Zipping file: '$PLUGIN'"
-          zip "$PLUGIN-compatibility.zip" "ship_upgrades_mission.txt"
+          zip -r "$PLUGIN-compatibility.zip" "${{ steps.repository_name.outputs.contents }}-ship.merging-compat"
       - name: Upload plugin
         uses: ncipollo/release-action@v1.11.1
         with:
