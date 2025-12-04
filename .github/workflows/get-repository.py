@@ -12,7 +12,7 @@ def run():
 		print(f'{repo}', file=fh)
 	reponamesplit = repo.split('/')
 	reponame = reponamesplit[1]
-	reponame = reponame.rstrip
+	reponame = reponame.rstrip()
 	print(reponame)
 	with open("repository_name", 'a') as fh:
 		print(f'{reponame}', file=fh)
