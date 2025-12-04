@@ -27,8 +27,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           PLUGIN_REPOSITORY="${{ github.event.issue.body }}" python3 .github/workflows/get-repository.py
-      - name: List
-        run: ls
       - name: Get requested repository
         uses: andstor/file-reader-action@v1
         with:
@@ -46,11 +44,6 @@ jobs:
         with:
           repository: ${{ steps.repository.outputs.contents }}
           path: ${{ steps.repository_name.outputs.contents }}
-      - name: List
-        run: |
-          ls
-          pwd
-          ls ${{ steps.repository_name.outputs.contents }}
       - name: Remove unneeded files
         run: |
           mv ${{ steps.repository_name.outputs.contents }}/data ${{ steps.repository_name.outputs.contents }}/..
@@ -62,12 +55,22 @@ jobs:
       - name: Generate plugin
         run: |
           REPOSITORY="${{ steps.repository_name.outputs.contents }}" python3 .github/workflows/generate.py
+      - name: Create plugin.txt
+        run: |
+          PLUGIN="${{ steps.repository_name.outputs.contents }}" python3 .github/workflows/create-plugin-txt.py
       - name: Move files into subfolder and list contents
         run: |
           ls
-          mkdir ${{ steps.repository_name.outputs.contents }}-ship.merging-compat
-          mv ship_upgrades_mission.txt ${{ steps.repository_name.outputs.contents }}-ship.merging-compat
-          mv ship_upgrades_ships.txt ${{ steps.repository_name.outputs.contents }}-ship.merging-compat
+          PLUGIN_NAME = ${{ steps.repository_name.outputs.contents }}-ship.merging-compat
+          mkdir $PLUGIN_NAME/data
+          mv plugin.txt $PLUGIN_NAME
+          mv ship_upgrades_mission.txt $PLUGIN_NAME/data
+          mv ship_upgrades_ships.txt $PLUGIN_NAME/data
+          mv assets/icon.png $PLUGIN_NAME/
+          mv assets/icon@2x.png $PLUGIN_NAME/
+          echo ""
+          ls $PLUGIN_NAME
+          echo ""
           ls
       - name: Zip plugin
         run: |

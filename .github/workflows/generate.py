@@ -211,13 +211,14 @@ def write_ships(tiers, obj, ship_exclude, nodes_exclude):
 
 def write_mission(ship_names, data_folder):
 	
+	data_folder_capitalized = data_folder[0].upper() + data_folder[1:]
 	# mission start text
 	missiontxt = '' + \
 		'mission "upgrade ships ' + data_folder + '"\n' +\
 		'	job\n' +\
 		'	repeat\n' +\
-		'	name "(' + data_folder + ' compat: Upgrade Ships)"\n' +\
-		'	"description" "Combine a ' + data_folder + ' ship +3 base versions of that ship into one of a higher tier, up to a max of T10."\n' +\
+		'	name "(' + data_folder_capitalized + ': Upgrade Ships)"\n' +\
+		'	"description" "Combine a ' + data_folder_capitalized + ' ship + 3 base versions of that ship into one of a higher tier, up to a max of T10."\n' +\
 		'	color selected "ship_upgrades job: selected"\n' +\
 		'	color unselected "ship_upgrades job: unselected"\n' +\
 		'	source "su_planet1"\n' +\
