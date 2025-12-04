@@ -61,7 +61,7 @@ jobs:
       - name: Move files into subfolder and list contents
         run: |
           ls
-          PLUGIN_NAME = ${{ steps.repository_name.outputs.contents }}-ship.merging-compat
+          PLUGIN_NAME=${{ steps.repository_name.outputs.contents }}-ship.merging-compat
           mkdir $PLUGIN_NAME/data
           mv plugin.txt $PLUGIN_NAME
           mv ship_upgrades_mission.txt $PLUGIN_NAME/data
