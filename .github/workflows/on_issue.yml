@@ -22,7 +22,7 @@ jobs:
       - name: Install libraries
         run: |
           python3 -m pip install Pillow
-      - name: Create plugin
+      - name: Find repository to download
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -63,7 +63,7 @@ jobs:
           PLUGIN="${{ steps.repository_name.outputs.contents }}"
           echo "Zipping file: '$PLUGIN'"
           zip "$PLUGIN-compatibility.zip" "ship_upgrades_mission.txt"
-      - name: Upload plugins to release
+      - name: Upload plugin
         uses: ncipollo/release-action@v1.11.1
         with:
           tag: latest
