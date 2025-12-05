@@ -2,7 +2,6 @@ import os
 
 def run():
 	plugin = os.environ['PLUGIN']
-	plugin = plugin[0].upper() + plugin[1:]
 	plugintxt = '' + \
 		'name "' + plugin + ' Ship Merging Compatibility"\n' +\
 		'about "This plugin provides compatibility between ' + plugin + ' and ship.merging."\n' +\
