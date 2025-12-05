@@ -214,7 +214,7 @@ def write_mission(ship_names, data_folder):
 	data_folder_capitalized = data_folder[0].upper() + data_folder[1:]
 	# mission start text
 	missiontxt = '' + \
-		'mission "' + data_folder + 'upgrade ships"\n' +\
+		'mission "' + data_folder + ' upgrade ships"\n' +\
 		'	job\n' +\
 		'	repeat\n' +\
 		'	name "' + data_folder_capitalized + ': Upgrade Ships"\n' +\
