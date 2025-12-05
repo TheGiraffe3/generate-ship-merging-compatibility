@@ -132,13 +132,19 @@ def write_ships(tiers, obj, ship_exclude, nodes_exclude):
 						number = '0' + number
 					if minus == True:
 						number = '-' + number
-					new_attributes += line[:pos2+1] + ' ' + str(float(number) * (tier + 1)) + '\n'
+					try:
+						new_attributes += line[:pos2+1] + ' ' + str(float(number) * (tier + 1)) + '\n'
+					except:
+						print('irregular line: ' + line)
 				else:
 					spaced = line.split(' ')
 					number = spaced[1]
 					if number.startswith('.'):
 						number = '0' + number
-					new_attributes += spaced[0] + ' ' + str(float(number) * (tier + 1)) + '\n'
+					try:
+						new_attributes += spaced[0] + ' ' + str(float(number) * (tier + 1)) + '\n'
+					except:
+						print('irregular line: ' + line)
 			# rename with tier
 			pos1 = part1.find('\n')
 			oldnameline = part1[:pos1-1]
