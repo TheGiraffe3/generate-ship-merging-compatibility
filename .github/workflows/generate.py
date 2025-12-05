@@ -136,6 +136,7 @@ def write_ships(tiers, obj, ship_exclude, nodes_exclude):
 						new_attributes += line[:pos2+1] + ' ' + str(float(number) * (tier + 1)) + '\n'
 					except:
 						print('irregular line: ' + line)
+						new_attributes += line
 				else:
 					spaced = line.split(' ')
 					number = spaced[1]
@@ -145,6 +146,7 @@ def write_ships(tiers, obj, ship_exclude, nodes_exclude):
 						new_attributes += spaced[0] + ' ' + str(float(number) * (tier + 1)) + '\n'
 					except:
 						print('irregular line: ' + line)
+						new_attributes += line
 			# rename with tier
 			pos1 = part1.find('\n')
 			oldnameline = part1[:pos1-1]

@@ -60,7 +60,6 @@ jobs:
           PLUGIN="${{ steps.repository_name.outputs.contents }}" python3 .github/workflows/create-plugin-txt.py
       - name: Move files into subfolder and list contents
         run: |
-          ls
           PLUGIN_NAME=${{ steps.repository_name.outputs.contents }}-ship.merging-compat
           mkdir -p $PLUGIN_NAME/data
           mv plugin.txt $PLUGIN_NAME
@@ -68,15 +67,11 @@ jobs:
           mv ship_upgrades_ships.txt $PLUGIN_NAME/data
           mv assets/icon.png $PLUGIN_NAME/
           mv assets/icon@2x.png $PLUGIN_NAME/
-          echo ""
-          ls $PLUGIN_NAME
-          echo ""
-          ls
       - name: Zip plugin
         run: |
           PLUGIN="${{ steps.repository_name.outputs.contents }}"
           echo "Zipping file: '$PLUGIN'"
-          zip -r "$PLUGIN-compatibility.zip" "${{ steps.repository_name.outputs.contents }}-ship.merging-compat"
+          zip -r "$PLUGIN-compatibility.zip" "$PLUGIN-ship.merging-compat"
       - name: Upload plugin
         uses: ncipollo/release-action@v1.11.1
         with:
@@ -93,8 +88,8 @@ jobs:
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
           BODY: >
-            The plugin was generated, so this issue is being automatically closed.
-            You can download it on the [release page](https://github.com/TheGiraffe3/generate-ship-merging-compatibility/releases/tag/latest).
+            The compatibility plugin between ship.merging and ${{ steps.repository_name.outputs.contents }} was generated, so this issue is being automatically closed.
+            You can download it on the [release page](https://github.com/TheGiraffe3/generate-ship-merging-compatibility/releases/tag/latest) as ${{ steps.repository_name.outputs.contents }}-compatibility.zip.
       - if: contains(github.event.issue.labels.*.name, 'autoclose')
         name: Close Issue
         uses: peter-evans/close-issue@v3
