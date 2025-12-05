@@ -13,7 +13,7 @@ def run():
 		'dependencies\n' +\
 		'	requires\n' +\
 		'		ship.merging\n' +\
-		'		' + plugin + '\n' +\
+		'		' + plugin + '\n'
 	with open("plugin.txt", 'a') as fh:
 		fh.write(plugintxt)
 
