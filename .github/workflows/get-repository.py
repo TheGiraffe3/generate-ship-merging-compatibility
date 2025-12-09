@@ -10,23 +10,28 @@ def run():
 	reponamesplit = repofull.split('/')
 	repo = reponamesplit[0] + '/' + reponamesplit[1]
 	repo = repo.rstrip('\n')
-	print(repo)
 	with open("repository", 'a') as fh:
 		print(f'{repo}', file=fh)
+	print(f"Created repository file with value of {repo}")
 	reponame = reponamesplit[1]
-	print(reponame)
 	with open("repository_name", 'a') as fh:
 		fh.write(reponame)
+	print(f"Created repository_name file with value of {reponame}")
 	datapath = ''
 	for i in range(1, len(reponamesplit)):
 		datapath += reponamesplit[i] + '/'
 	datapath += 'data'
-	print(datapath)
 	with open("datapath", 'a') as fh:
 		fh.write(datapath)
+	print(f"Created datapath file with value of {datapath}")
 	multipluginname = reponamesplit[3]
 	if multipluginname != "":
-		print(multipluginname)
+		print(f"Created multipluginnamefile with value of {multipluginname}")
+		with open("multipluginname", 'a') as fh:
+			fh.write(multipluginname)
+	else:
+		multipluginname = reponame
+		print(f"Created multipluginnamefile with value of {multipluginname} (which is the same as {reponame})")
 		with open("multipluginname", 'a') as fh:
 			fh.write(multipluginname)
 
