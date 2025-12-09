@@ -24,8 +24,8 @@ def run():
 	with open("datapath", 'a') as fh:
 		fh.write(datapath)
 	print(f"Created datapath file with value of {datapath}")
-	multipluginname = reponamesplit[3]
-	if multipluginname != "":
+	if len(reponamesplit) > 3:
+		multipluginname = reponamesplit[3]
 		print(f"Created multipluginnamefile with value of {multipluginname}")
 		with open("multipluginname", 'a') as fh:
 			fh.write(multipluginname)
