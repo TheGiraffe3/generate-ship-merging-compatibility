@@ -4,7 +4,8 @@ def run():
 	repository = os.environ['PLUGIN_REPOSITORY']
 	reposplitted = repository.split('\n')
 	if reposplitted[0] == '### Repository':
-		print('		SUCCESS: Newly created issue is a compatibility request.')
+		print('SUCCESS: Newly created issue is a compatibility request.')
+		print()
 	print('REPOSITORY TO DOWNLOAD:')
 	repofull = reposplitted[2]
 	reponamesplit = repofull.split('/')
