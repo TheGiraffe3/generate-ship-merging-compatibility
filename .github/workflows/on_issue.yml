@@ -42,7 +42,9 @@ jobs:
       - name: Echo repository user, name, and data path
         run: |
           echo "${{ steps.repository.outputs.contents }}"
+          echo ""
           echo "${{ steps.repository_name.outputs.contents }}"
+          echo ""
           echo "${{ steps.datapath.outputs.contents }}"
       - name: Create downloaded directory
         run: mkdir ${{ steps.repository_name.outputs.contents }}
@@ -53,7 +55,7 @@ jobs:
           path: ${{ steps.repository_name.outputs.contents }}
       - name: Remove unneeded files
         run: |
-          mv ${{ steps.repository_name.outputs.contents }}/data ${{ steps.repository_name.outputs.contents }}/..
+          mv ${{ steps.datapath.outputs.contents }} ${{ steps.repository_name.outputs.contents }}/..
           ls
           rm -r ${{ steps.repository_name.outputs.contents }}
           mv data ${{ steps.repository_name.outputs.contents }}

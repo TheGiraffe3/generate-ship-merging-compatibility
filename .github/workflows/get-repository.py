@@ -9,6 +9,7 @@ def run():
 	repofull = reposplitted[2]
 	reponamesplit = repofull.split('/')
 	repo = reponamesplit[0] + '/' + reponamesplit[1]
+	repo = repo.rstrip('\n')
 	print(repo)
 	with open("repository", 'a') as fh:
 		print(f'{repo}', file=fh)
