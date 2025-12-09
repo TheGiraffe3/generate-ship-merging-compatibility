@@ -96,7 +96,7 @@ jobs:
           NUMBER: ${{ github.event.issue.number }}
           BODY: >
             The compatibility plugin between ship.merging and ${{ steps.multipluginname.outputs.contents }} was generated, so this issue is being automatically closed.
-            You can download it on the [release page](https://github.com/TheGiraffe3/generate-ship-merging-compatibility/releases/tag/latest) as ${{ steps.repository_name.outputs.contents }}-compatibility.zip.
+            You can download it on the [release page](https://github.com/TheGiraffe3/generate-ship-merging-compatibility/releases/tag/latest) as ${{ steps.multipluginname.outputs.contents }}-compatibility.zip.
       - if: contains(github.event.issue.labels.*.name, 'autoclose')
         name: Close Issue
         uses: peter-evans/close-issue@v3
