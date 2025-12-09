@@ -19,9 +19,6 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 2
-      - name: Install libraries
-        run: |
-          python3 -m pip install Pillow
       - name: Find repository to download
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -18,7 +18,8 @@ def run():
 		fh.write(reponame)
 	datapath = ''
 	for i in range(1, len(reponamesplit)):
-		datapath += reponamesplit[i]
+		datapath += reponamesplit[i] + '/'
+	datapath += 'data'
 	print(datapath)
 	with open("datapath", 'a') as fh:
 		fh.write(datapath)
