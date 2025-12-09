@@ -63,7 +63,7 @@ jobs:
           ls ${{ steps.repository_name.outputs.contents }}
       - name: Generate plugin
         run: |
-          REPOSITORY="${{ steps.datapath.outputs.contents }}" python3 .github/workflows/generate.py
+          REPOSITORY="${{ steps.repository_name.outputs.contents }}" python3 .github/workflows/generate.py
       - name: Create plugin.txt
         run: |
           PLUGIN="${{ steps.repository_name.outputs.contents }}" python3 .github/workflows/create-plugin-txt.py
