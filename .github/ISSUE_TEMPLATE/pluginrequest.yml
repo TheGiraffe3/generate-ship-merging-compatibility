@@ -12,6 +12,8 @@ body:
         Change the field to the owner/repository you want to turn into a plugin (e.g. MidnightPlugins/Lost-in-Midnight, TheGiraffe3/rumskib).
 
         The repository must exist on GitHub, or the script will not work.
+
+        If you want compatibility with a multi-plugin repo, enter the path to the plugin as well (e.g. Nova1422/plugins/myplugins/obtainheron)
   - type: input
     id: checkout-repository
     attributes:

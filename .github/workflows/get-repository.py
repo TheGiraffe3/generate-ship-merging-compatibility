@@ -32,14 +32,24 @@ def run():
 	print()
 	if len(reponamesplit) > 3:
 		multipluginname = reponamesplit[3]
-		print(f"Created multipluginnamefile with value of {multipluginname}")
+		print(f"Created multipluginname file with value of {multipluginname}")
 		with open("multipluginname", 'a') as fh:
 			fh.write(multipluginname)
 	else:
 		multipluginname = reponame
-		print(f"Created multipluginnamefile with value of {multipluginname} (which is the same as {reponame})")
+		print(f"Created multipluginname file with value of {multipluginname} (which is the same as {reponame})")
 		with open("multipluginname", 'a') as fh:
 			fh.write(multipluginname)
+	if len(reponamesplit) > 3:
+		multipluginnamewithdata = reponamesplit[3] + '/data'
+		print(f"Created multipluginnamewithdata file with value of {multipluginnamewithdata}")
+		with open("multipluginnamewithdata", 'a') as fh:
+			fh.write(multipluginnamewithdata)
+	else:
+		multipluginnamewithdata = reponame
+		print(f"Created multipluginnamewithdata file with value of {multipluginnamewithdata} (which is the same as {reponame})")
+		with open("multipluginnamewithdata", 'a') as fh:
+			fh.write(multipluginnamewithdata)
 
 if __name__ == '__main__':
 	run()
