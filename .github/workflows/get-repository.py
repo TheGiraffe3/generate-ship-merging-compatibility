@@ -8,7 +8,7 @@ def run():
 	print('REPOSITORY TO DOWNLOAD:')
 	repofull = reposplitted[2]
 	reponamesplit = repofull.split('/')
-	repo = reponamesplit[1] + '/' + reponamesplit[2]
+	repo = reponamesplit[0] + '/' + reponamesplit[1]
 	print(repo)
 	with open("repository", 'a') as fh:
 		print(f'{repo}', file=fh)
