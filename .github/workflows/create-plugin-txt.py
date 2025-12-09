@@ -11,8 +11,7 @@ def run():
 		'	zuckung\n' +\
 		'dependencies\n' +\
 		'	requires\n' +\
-		'		ship.merging\n' +\
-		'		' + plugin + '\n'
+		'		ship.merging\n'
 	with open("plugin.txt", 'a') as fh:
 		fh.write(plugintxt)
 

@@ -15,6 +15,12 @@ def run():
 	print(reponame)
 	with open("repository_name", 'a') as fh:
 		fh.write(reponame)
+	datapath = ''
+	for i in range(1, len(reponamesplit)):
+		datapath += reponamesplit[i]
+	print(datapath)
+	with open("datapath", 'a') as fh:
+		fh.write(datapath)
 
 if __name__ == '__main__':
 	run()
