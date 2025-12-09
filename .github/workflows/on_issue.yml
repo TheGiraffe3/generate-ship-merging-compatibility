@@ -44,11 +44,6 @@ jobs:
         with:
           path: 'multipluginname'
         id: multipluginname
-      - name: Get multipluginnamewithdata
-        uses: andstor/file-reader-action@v1
-        with:
-          path: 'multipluginnamewithdata'
-        id: multipluginnamewithdata
       - name: Create downloaded directory
         run: mkdir ${{ steps.repository_name.outputs.contents }}
       - name: Download requested repository
@@ -66,7 +61,7 @@ jobs:
           ls ${{ steps.multipluginname.outputs.contents }}
       - name: Generate plugin
         run: |
-          REPOSITORY="${{ steps.multipluginnamewithdata.outputs.contents }}" python3 .github/workflows/generate.py
+          REPOSITORY="${{ steps.multipluginname.outputs.contents }}" python3 .github/workflows/generate.py
       - name: Create plugin.txt
         run: |
           PLUGIN="${{ steps.multipluginname.outputs.contents }}" python3 .github/workflows/create-plugin-txt.py
