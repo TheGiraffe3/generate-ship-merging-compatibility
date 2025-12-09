@@ -24,6 +24,11 @@ def run():
 	print(datapath)
 	with open("datapath", 'a') as fh:
 		fh.write(datapath)
+	multipluginname = reponamesplit[3]
+	if multipluginname != "":
+		print(multipluginname)
+		with open("multipluginname", 'a') as fh:
+			fh.write(multipluginname)
 
 if __name__ == '__main__':
 	run()

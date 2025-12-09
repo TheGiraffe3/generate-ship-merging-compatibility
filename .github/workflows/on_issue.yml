@@ -39,13 +39,20 @@ jobs:
         with:
           path: 'datapath'
         id: datapath
-      - name: Echo repository user, name, and data path
+      - name: Get multiplugin name
+        uses: andstor/file-reader-action@v1
+        with:
+          path: 'multipluginname'
+        id: multipluginname
+      - name: Echo repository user, name, data path, and multiplugin name
         run: |
           echo "${{ steps.repository.outputs.contents }}"
           echo ""
           echo "${{ steps.repository_name.outputs.contents }}"
           echo ""
           echo "${{ steps.datapath.outputs.contents }}"
+          echo ""
+          echo "${{ steps.multipluginname.outputs.contents }}"
       - name: Create downloaded directory
         run: mkdir ${{ steps.repository_name.outputs.contents }}
       - name: Download requested repository
@@ -67,18 +74,22 @@ jobs:
       - name: Create plugin.txt
         run: |
           PLUGIN="${{ steps.repository_name.outputs.contents }}" python3 .github/workflows/create-plugin-txt.py
-      - name: Move files into subfolder and list contents
+      - name: Move files into subfolder, list contents, and zip plugin
         run: |
-          PLUGIN_NAME=${{ steps.repository_name.outputs.contents }}-ship.merging-compat
+          if ${{ steps.multipluginname.outputs.contents }} != ""
+            PLUGIN_NAME=${{ steps.multipluginname.outputs.contents }}-ship.merging-compat
+          else
+            PLUGIN_NAME=${{ steps.repository_name.outputs.contents }}-ship.merging-compat
+          fi
           mkdir -p $PLUGIN_NAME/data
           mv plugin.txt $PLUGIN_NAME
           mv ship_upgrades_mission.txt $PLUGIN_NAME/data
           mv ship_upgrades_ships.txt $PLUGIN_NAME/data
           mv assets/icon.png $PLUGIN_NAME/
           mv assets/icon@2x.png $PLUGIN_NAME/
-      - name: Zip plugin
-        run: |
-          PLUGIN="${{ steps.repository_name.outputs.contents }}"
+          echo ""
+          echo ""
+          echo ""
           echo "Zipping file: '$PLUGIN'"
           zip -r "$PLUGIN-compatibility.zip" "$PLUGIN-ship.merging-compat"
       - name: Upload plugin
