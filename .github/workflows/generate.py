@@ -72,7 +72,8 @@ def write_ships(tiers, obj, ship_exclude, nodes_exclude):
 			ship = line[pos1+1:pos2]
 			if not ship in ship_exclude:
 				if line == 'ship "' + ship + '"':
-					ships.append(each)
+					if not 'add attributes' in each:
+						ships.append(each)
 	# get raw ship names
 	for ship in ships:
 		pos1 = ship.find('"')
